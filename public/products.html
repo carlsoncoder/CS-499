@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Carlson's Guitar Pedal Emporium</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,700;1,400;1,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/main.css">
+        <style type="text/css">
+            p {
+                margin-left: 15px;
+                text-align: left;
+            }
+            
+            p.productBrandName {
+                font-size: 1.7em;
+            }
+
+            img.productImage {
+                width:300px;
+                height:300px;
+                margin-left:15px;
+            }
+
+            ul {
+                list-style-type: none;
+            }
+
+            li {
+                border: 2px solid black;
+                border-radius: 5px;
+                margin-top: 10px;
+                margin-left: 27%;
+                width: 46%;
+            }
+
+            li:hover {
+                cursor: pointer;
+                background-color: #31CBFA;
+            }
+            
+            button {
+                width: 200px;
+                height: 50px;
+                font-size: 1.3em;
+                color: black;
+                background-color: #31CBFA;
+                border: 2px solid black;
+                border-radius: 5px;
+            }
+            
+            button:hover {
+                background-color: #24f0e8;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <script
+        src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+
+        <script src="js/products.js"></script>
+        <script src="js/storage.js"></script>
+
+        <script type="text/javascript">
+            window.onload = function() {
+                buildProductListView(null);
+            }
+
+            function buildProductListView(searchTerm) {
+                var products;
+                if (searchTerm == null || searchTerm == undefined || searchTerm == "") {
+                    // load all of them
+                    products = loadProductsFromApi();
+                }
+                else {
+                    $("#productsCollection").hide();
+                    products = loadProductsBySearchTerm(searchTerm);
+                }
+
+                const templateString = `
+                    <li onclick="return handleListItemClick({{id}})">
+                        <div>
+                            <p class="productBrandName">{{brand}} {{name}} <em>({{type}})</em></p>
+                            <p class="productPrice">\${{price}}</p>
+                            <img class="productImage" src=\"resources/img/{{image}}\" width=\"50\" height=\"50\" />
+                        </div>
+                    </li>`;
+
+                // clear out all list items before adding them back in
+                $("#productsCollection").empty();
+
+                if (products.length == 0) {
+                    $("#noResults").show();
+                    $("#productsCollection").hide();
+                }
+                else {
+                    $("#noResults").hide();
+                    $("#productsCollection").fadeIn(1000);
+
+                    products.forEach(product => {
+                        var productListItem = templateString
+                            .replace("{{id}}", product.productId)
+                            .replace("{{brand}}", product.brand)
+                            .replace("{{name}}", product.name)
+                            .replace("{{price}}", product.price)
+                            .replace("{{type}}", product.type)
+                            .replace("{{image}}", product.image);
+
+                        $("#productsCollection").append(productListItem);
+                    });
+                }
+            }
+
+            function handleListItemClick(productId) {
+                var productDetailsUrl = 'productdetails.html?productId=' + productId;
+                location.href = productDetailsUrl;
+                return false;
+            }
+
+            function searchTextChanged() {
+                var searchTerm = document.getElementById("searchText").value;
+                buildProductListView(searchTerm);
+                return false;
+            }
+        </script>
+
+        <!-- This is the main header of the page that shows the business name and the navigation links -->
+        <header>
+            <p class="navigationHeader" style="text-align:center;">Carlson's Guitar Pedal Emporium</p>
+            <a class="navigation" href="home.html">Home</a>
+            <a class="navigation" href="about.html">About</a>
+            <a class="navigation" href="products.html">Products</a>
+            <a class="navigation" href="contact.html">Contact</a>
+            <a class="navigation" href="subscribe.html">Subscribe</a>
+            <a class="navigation" href="shoppingcart.html">Cart</a>
+        </header>
+
+        <!-- This is the main content container of the page -->
+        <div id="content">
+            <h2>Products</h2>
+            <div id="searchDiv">
+                <div class="formChild">
+                    <p style="text-align:center;"><em>Start typing in the search box to filter the product list:</em></p>
+                    <input type="text" id="searchText" oninput="return searchTextChanged();"><br>
+                </div>
+            </div>
+            <div id="resultsDiv">
+                <h3 style="display:none;" id="noResults">Your search returned no results.  Please try again or search with an empty search term to see all products.</h3>
+                <ul id="productsCollection">
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

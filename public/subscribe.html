@@ -1,0 +1,89 @@
+    <!doctype html>
+    <html lang="en">
+        <head>
+            <title>Carlson's Guitar Pedal Emporium</title>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+            <meta name="description" content="">
+            <meta name="author" content="">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="preconnect" href="https://fonts.gstatic.com">
+            <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,700;1,400;1,700&display=swap" rel="stylesheet">
+            <link rel="stylesheet" href="css/main.css">
+        </head>
+        <body>      
+            <script type="text/javascript">
+                function submitForm() {
+                    var fullName = document.getElementById("fullName").value;
+                    var emailAddress = document.getElementById("emailAddress").value;
+    
+                    var radioButtonElements = document.getElementsByName('emailFrequency');
+                    var selectedEmailFrequency;
+    
+                    for(var i = 0; i < radioButtonElements.length; i++){
+                        if(radioButtonElements[i].checked){
+                            selectedEmailFrequency = radioButtonElements[i].value;
+                        }
+                    }
+
+                    if (fullName == null || fullName == "") {
+                        alert("Please enter your full name!");
+                        return false;
+                    }
+                    else if (emailAddress == null || emailAddress == "" ) {
+                        alert("Please enter your email address!");
+                        return false;
+                    }
+                    else if (selectedEmailFrequency == undefined) {
+                        alert("Please select an email frequency!");
+                        return false;
+                    }
+                    else {
+                        alert("Thank you for subscribing!" + "\n\n" + "Subscription Details: " + "\n" + "Full Name: " + fullName + "\n" + "Email Address: " + emailAddress + "\n" + "Email Frequency: " + selectedEmailFrequency);
+                        location.href = 'home.html';
+                        return false;
+                    }
+                }
+            </script>
+
+            <!-- This is the main header of the page that shows the business name and the navigation links -->
+            <header>
+                <p class="navigationHeader">Carlson's Guitar Pedal Emporium</p>
+                <a class="navigation" href="home.html">Home</a>
+                <a class="navigation" href="about.html">About</a>
+                <a class="navigation" href="products.html">Products</a>
+                <a class="navigation" href="contact.html">Contact</a>
+                <a class="navigation" href="subscribe.html">Subscribe</a>
+                <a class="navigation" href="shoppingcart.html">Cart</a>
+            </header>
+
+            <!-- This is the main content container of the page -->
+            <div id="content">
+                <h2>Subscribe</h2>
+                <p>Subscribe to our email newsletter to get cool updates on new products that become available!</p>
+                <p>Subscribing is completely free, and you can choose to opt out at any time.</p>
+                <br />
+
+                <p>Please fill out the details below to start your subscription!</p>
+                <br />
+
+                <form onsubmit="return submitForm()">
+                    <div class="formChild">
+                        <p class="formPara">Full Name:</p>
+                        <input type="text" id="fullName"><br>
+                    </div>
+                    <div class="formChild">
+                        <p class="formPara">Email Address:</p>
+                        <input type="text" id="emailAddress"><br>
+                    </div>
+                    <div class="formChild">
+                        <p class="formPara">How often do you want to hear from us:</p>
+                        <input type="radio" name="emailFrequency" value="Daily" style="margin-left:-10px;">Daily Email<br>
+                        <input type="radio" name="emailFrequency" value="Weekly">Weekly Email<br>
+                        <input type="radio" name="emailFrequency" value="Monthly" style="margin-left:8px;">Monthly Email<br>
+                    </div>
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+        </body>
+    </html>

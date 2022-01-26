@@ -1,0 +1,19 @@
+{
+  "name": "cs499-final-project",
+  "version": "1.0.0",
+  "description": "The final project for my CS499 Capstone project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^3.2.3",
+    "body-parser": "^1.19.1",
+    "debug": "^4.3.3",
+    "express": "^4.17.2",
+    "mongoose": "^5.13.14",
+    "morgan": "^1.10.0"
+  }
+}

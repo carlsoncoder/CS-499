@@ -1,0 +1,151 @@
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+/* Main CSS for the body of the overall HTML page */
+html, body {
+    font-family: 'Open Sans', sans-serif;    
+    padding: 0;
+    margin: 0;
+}
+
+/* CSS to handle our background images */
+body { 
+    background: linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92)), url('../resources/img/bosspedals.jpg');
+    background-repeat:  no-repeat;
+    background-position: center center;
+}
+
+/* Each page has a header element that has the same content - used for site title and navigation quick links */
+header {
+    position: sticky;
+    width: 100%;
+    padding: 18px;
+    background: #2282e3;
+    top: 0;
+    left: 0;
+    text-align: center;
+}
+
+/* Text inside our headers for the site title and nav links */
+p.navigationHeader {
+    margin-top: 0px;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+/* Each page has a main div with an id of "content" that all the content goes to that does NOT belong in the page header */
+div#content {
+    padding: 5px;
+    text-align: center;
+}
+
+/* Style for the page links at the top of each page*/
+a.navigation {
+    color: black;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 9px;
+    font-weight: bold;
+    font-size: 1.15em;
+    text-decoration: none;
+    background-color: #31CBFA;
+    margin-left: 20px;
+    transition: all .25s ease-in-out;
+}
+
+/* CSS style for when a user hovers over the navigation page links at the top of the page */
+a.navigation:hover {
+    background-color: #24f0e8;
+    padding:14px;
+}
+
+/* Styling child div elements inside a form */
+div.formChild {
+    margin-bottom: 30px;
+}
+
+/* Styling paragraphs in forms */
+p.formPara {    
+    font-weight: bold;
+}
+
+/* Style for radio input buttons in a form */
+input[type="radio"] {
+    margin: 5px;
+}
+
+/* Style for inputs with type "submit" in a form */
+input[type="submit"] {
+    margin-top: 75px;
+    width: 200px;
+    height: 50px;
+    font-size: 1.3em;
+    color: black;
+    background-color: #31CBFA;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+/* Handles the user hovering over the input with type "submit" inside a form */
+input[type="submit"]:hover {
+    background-color: #24f0e8;
+    cursor: pointer;
+}
+
+/* Styling textboxes */
+input[type="text"] {
+    margin: 5px;
+    width: 30%;
+    height: 30px;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: #24f0e8;
+    font-size: 1.2em;
+}
+
+/* Styling buttons (used for interaction outside of forms, instead of "input[type="submit"]" */
+button {
+    margin-top: 75px;
+    margin-left: 25px;
+    width: 200px;
+    height: 50px;
+    font-size: 1.3em;
+    color: black;
+    background-color: #31CBFA;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+/* Styling for the user hovering over the buttons */
+button:hover {
+    background-color: #24f0e8;
+    cursor: pointer;
+}
+
+/* Style for all paragraphs displaying the price of a product */
+p.productPrice {
+    color: green;
+    font-size: 1.2em;
+}
+
+/* Making our h2 headers bold to stand out */
+h2 {
+    font-weight: bold;
+}
+
+div.about {
+    width: 800px;
+    margin: 0 auto;
+}
+
+p.about {
+    text-align: left;
+}

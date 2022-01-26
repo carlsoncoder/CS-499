@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Carlson's Guitar Pedal Emporium</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,700;1,400;1,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/main.css">
+        <style type="text/css">
+            textarea {
+                margin: 5px;
+                width: 30%;
+                border: 2px solid black;
+                border-radius: 5px;
+                background-color: #24f0e8;
+                font-size: 1.2em;
+                font-family: arial, sans-serif;
+            }
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+            function submitForm() {
+                var fullName = document.getElementById("fullName").value;
+                var emailAddress = document.getElementById("emailAddress").value;
+                var messageContent = document.getElementById("messageContent").value;
+
+                if (fullName == null || fullName == "") {
+                    alert("Please enter your full name!");
+                    return false;
+                }
+                else if (emailAddress == null || emailAddress == "" ) {
+                    alert("Please enter your email address!");
+                    return false;
+                }
+                else if (messageContent == null || messageContent == "") {
+                    alert("Please enter a message to send!");
+                    return false;
+                }
+                else {
+                    alert("Thank you!  The following message will be sent:" + "\n\n" + messageContent);
+                    location.href = 'home.html';
+                    return false;
+                }
+            }
+        </script>
+
+        <!-- This is the main header of the page that shows the business name and the navigation links -->
+        <header>
+            <p class="navigationHeader">Carlson's Guitar Pedal Emporium</p>
+            <a class="navigation" href="home.html">Home</a>
+            <a class="navigation" href="about.html">About</a>
+            <a class="navigation" href="products.html">Products</a>
+            <a class="navigation" href="contact.html">Contact</a>
+            <a class="navigation" href="subscribe.html">Subscribe</a>
+            <a class="navigation" href="shoppingcart.html">Cart</a>
+        </header>
+
+        <!-- This is the main content container of the page -->
+        <div id="content">
+            <h2>Contact Us</h2>
+            <p>Feel free to call us at (262) 555-1212 anytime between 9 AM and 5 PM EST</p>
+            <br />
+
+            <p>Or, if you prefer, you can fill out our contact form below and we'll get back to you as soon as we can!</p>
+            <br />
+
+            <form onsubmit="return submitForm()">
+                <div class="formChild">
+                    <p class="formPara">Your Name:</p>
+                    <input type="text" id="fullName"><br>
+                </div>
+                <div class="formChild">
+                    <p class="formPara">Your Email Address:</p>
+                    <input type="text" id="emailAddress"><br>
+                </div>
+                <div class="formChild">
+                    <p class="formPara">Message:</p>
+                    <textarea id="messageContent" rows="5" cols="60" name="text" placeholder="Enter Message Here..."></textarea>
+                </div>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </body>
+</html>

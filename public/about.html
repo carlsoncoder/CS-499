@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Carlson's Guitar Pedal Emporium</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,700;1,400;1,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        <!-- This is the main header of the page that shows the business name and the navigation links -->
+        <header>
+            <p class="navigationHeader">Carlson's Guitar Pedal Emporium</p>
+            <a class="navigation" href="home.html">Home</a>
+            <a class="navigation" href="about.html">About</a>
+            <a class="navigation" href="products.html">Products</a>
+            <a class="navigation" href="contact.html">Contact</a>
+            <a class="navigation" href="subscribe.html">Subscribe</a>
+            <a class="navigation" href="shoppingcart.html">Cart</a>
+        </header>
+
+        <!-- This is the main content container of the page -->
+        <div id="content">
+            <h2>About</h2>
+            <h3>Documentation of Development Process:</h3>
+            <div class="about">
+                <p class="about">
+                    The intent of this website was to provide a virtual storefront for my Uncle's business, "Carlson's Guitar Pedal Emporium".  The business 
+                    essentially buys and re-sells guitar effects pedals, with the main goal being to sell the pedals for a higher price than he purchased them for.
+                    To ensure that I built a website that met those requirements, I wanted to focus on two main things:  Having a clean, welcoming design, as well as 
+                    providing a lot of details about every product for sale.
+                </p>
+                <p class="about">
+                    The clean design was accomplished by a simple color pallete and standardized navigation headers, making the site aesthetically pleasing and easy to navigate.
+                    The product detail was accomplished by including a wealth of information about each product, including images, demo videos, and detailed text descriptions.
+                    Hopefully you will agree that the website has met our stated objectives!
+                </p>
+            </div>
+
+            <h3>Defense of Website Development Choices:</h3>
+            <div class="about">
+                <p class="about">
+                    I feel the website is welcoming and engaging due to the use of a simple but effective color design, and the header navigation links.  While I will go into detail below
+                    to describe each page in detail, I wanted to call out the navigation and color choices first, as those are the same/duplicated on each page.
+                    The color scheme is fairly simple, with two muted blue colors and a light green.   This is easy on the eyes and doesn't detract from the main content of any page.
+                    Likewise, the navigation headers are always present and always on the top of the page, ensuring the end user can easily find their way around the site without issue.
+                    Another nice usability feature I added, as adding in a ":hover" CSS class on the navigation buttons, so that when a user hovers their mouse over them, they grow slightly
+                    in size and change color, so the user can easily see what link they are about to click on.
+                </p>
+                <p class="about">
+                    <b>HOME</b> - For the home page, I kept it very simple with a welcome paragraph, and also included a link directly to the Products page, hoping to draw the user there.
+                    I additionally included two demo videos to hopefully grab the users attention!  This page is pretty straightforward.
+                </p>
+                <p class="about">
+                    <b>ABOUT</b> - For the about page, I chose to center the content in the middle of the screen to make it front and center for the user.
+                </p>
+                <p class="about">
+                    <b>PRODUCTS</b> - For the products page, I incorporated an unordered list, and removed the bullet-points normally found on such a list with CSS styles
+                    I then made each "list entry" a DIV with with several text paragraphs and an image.  I included a border around the div to visually distinguish each item in the 
+                    list from the others.  Another fun thing I added here which will make the site easier to use, is a search box.  Instead of the normal "enter text and hit search button" approach,
+                    I utilized the "oninput" event on my textbox and some Javascript code to provide "real-time" searching, which I feel is a great feature!  And lastly, I implemented linking functionality
+                    where a user can click on any list item and be taken to the product details page.
+                </p>
+                <p class="about">
+                    <b>CONTACT</b> - For the contact page, I kept the same color themes and also centered all the form items in the middle of the screen to focus the user attention on them.
+                    It's a pretty straightforward page, but I did add some error checking with Javascript to ensure that the user fills in all the necessary fields before submitting the form.
+                </p>
+                <p class="about">
+                    <b>SUBSCRIBE</b> - For the subscribe page, I strived to make it as similar to the contact page as possible.  Both use the same color scheme, both use forms, both center 
+                    the content in the middle of the screen, and both implement error checking before form submission.  This will make the website experience feel uniform to any end users
+                </p>
+                <p class="about">
+                    <b>CART</b> - For the shopping cart page I chose to utilize a table to mimic what most users are used to seeing on a shopping cart page on an online web store.
+                    It's very straightforward and easy to use, and I also chose to include the product image so the user could use that to help remember the item if they couldn't recall it 
+                    based on the item name alone.
+                </p>
+            </div>
+
+            <h3>Opportunities for Improvement/Growth</h3>
+            <div class="about">
+                <p class="about">
+                    The main area I would have focused on for improvement if I had more time was testing different screen resolutions and form-factors.  I made sure the website looked decent on both 
+                    my 12" laptop screen, and my large 26" 4K monitor.  However, there are a TON of other form factors out there, such as mobile devices, tablets, screens with lower resolutions, etc.
+                    If I had the time, I would've spent more time working on responsive design and CSS media queries to make the site look as good as possible in all screens/resolutions.
+                </p>
+                <p class="about">
+                    One area where I could see spending some time on improving the website would be dynamically loading the product data from a service endpoint/API.  Right now, all the product
+                    data is hard-coded in a JavaScript file - this is obviously not very maintainable in the long term.  Ideally, I'd have a backend server/database that would house the product information,
+                    and then I'd just load that up from that endpoint and display it on this website.
+                </p>
+                <p class="about">
+                    Lastly - this isn't really an improvement to the site, so to speak, but instead to the backend code.  For the dynamic pages that display products or product details 
+                    (such as the Products page, Product Details page, and Shopping Cart pages), I was dynamically building HTML with jQuery.  This works, and for any user browsing the site, 
+                    they wouldn't know or care about this.  But a better approach from a development/maintainability standpoint would be to integrate something with templating, such as 
+                    Handlebars, React, or AngularJS.
+                </p>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Carlson's Guitar Pedal Emporium</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,700;1,400;1,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/main.css">
+        <style type="text/css">
+            table {
+                border: 2px solid black;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 40px;
+                width: 38%;
+            }
+      
+            td, th {
+                border: 2px solid black;
+            }
+
+            button.removeButton {
+                width: 120px;
+                height: 40px;
+                font-size: 1.3em;
+                margin: 10px 0px 10px 0px;
+            }
+        </style>
+    </head>
+    <body>
+        <script
+        src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+
+        <script src="js/storage.js"></script>
+        <script src="js/products.js"></script>
+
+        <script type="text/javascript">
+            window.onload = function() {
+                buildShoppingCartView();
+            }
+
+            function buildShoppingCartView() {
+                var productIds = getShoppingCartList();
+
+                var products = [];
+                for (var i = 0; i < productIds.length; i++) {
+                    var product = loadProductByIdFromApi(productIds[i]);
+                    products.push(product);
+                }
+
+                const templateString = `
+                    <tr class="detailRow">
+                        <td><img class="productImage" src=\"resources/img/{{image}}\" width=\"50\" height=\"50\" /></td>
+                        <td><p>{{productName}}</p></td>
+                        <td>{{productPrice}}</td>
+                        <td><button class="removeButton" onclick="return removeFromCart({{productId}});">Remove</button></td>
+                    </tr>`;
+
+                // clear out all list items before adding them back in
+                $("#shoppingCartDetails").find("tr:gt(0)").remove();
+
+                if (products.length == 0) {
+                    $("#noResults").show();
+                    $("#shoppingCartDetails").hide();
+                    $("#purchaseButton").hide();
+                }
+                else {
+                    $("#noResults").hide();
+                    $("#shoppingCartDetails").show();
+                    $("#purchaseButton").show();
+
+                    products.forEach(product => {
+                        var productNameString = product.brand + " - " + product.name;
+                        var productPriceString = "$" + product.price;
+
+                        var productTableRow = templateString
+                            .replace("{{image}}", product.image)
+                            .replace("{{productName}}", productNameString)
+                            .replace("{{productPrice}}", productPriceString)
+                            .replace("{{productId}}", product.productId);
+
+                        $("#shoppingCartDetails").append(productTableRow);
+                    });
+                }
+            }
+
+            function removeFromCart(productId) {
+                if (confirm("Are you sure you want to remove this product from your cart?")) {
+                    removeFromShoppingCart(productId);
+                    buildShoppingCartView();
+                }
+            }
+
+            function completePurchase() {
+                var success = purchaseProducts();
+                if (success) {
+                    // clear cart
+                    resetShoppingCart();
+
+                    // Notify user and reload page
+                    alert("Thank you for your purchase!");
+                    buildShoppingCartView();
+                }
+                else {
+                    alert("Internal Application Error: Unable to complete purchase at this time");
+                }
+            }
+            //
+        </script>
+
+        <!-- This is the main header of the page that shows the business name and the navigation links -->
+        <header>
+            <p class="navigationHeader">Carlson's Guitar Pedal Emporium</p>
+            <a class="navigation" href="home.html">Home</a>
+            <a class="navigation" href="about.html">About</a>
+            <a class="navigation" href="products.html">Products</a>
+            <a class="navigation" href="contact.html">Contact</a>
+            <a class="navigation" href="subscribe.html">Subscribe</a>
+            <a class="navigation" href="shoppingcart.html">Cart</a>
+        </header>
+
+        <!-- This is the main content container of the page -->
+        <div id="content">
+            <h2>Shopping Cart</h2>
+            <div>
+                <table id="shoppingCartDetails">
+                    <tr>
+                        <th></th>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Remove From Cart</th>
+                    </tr>
+                </table>
+                <button id="purchaseButton" onclick="return completePurchase();">Purchase</button>
+            </div>
+             <h3 style="display:none;" id="noResults">Your shopping cart is currently empty!</h3>
+        </div>
+    </body>
+</html>
