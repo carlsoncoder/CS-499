@@ -51,7 +51,7 @@ async function insertTransactions() {
 }
 
 async function insertTransactionBatch(allProducts) {
-    // Only do a batch of 50 at a time - more than that cases rate-limiting (HTTP 429) in CosmosDB
+    // Only do a batch of 50 at a time - more than that causes rate-limiting (HTTP 429) in CosmosDB
     var totalTransactionCount = 50;
     var possibleProductCount = [1, 2, 3];
     var allTransactions = [];
