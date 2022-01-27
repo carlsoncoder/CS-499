@@ -38,20 +38,20 @@ function loadProductsFromApi() {
 function loadProductByIdFromApi(productId) {
     productId = productId.trim();
 
-    var foundProduct = null;
+    var foundProductDetails = null;
 
     $.ajax({
         type: 'GET',
         url: "api/products/" + productId,
         dataType: "json",
         success: function(result) {
-            foundProduct = result;
+            foundProductDetails = result;
         },
         data: {},
         async: false
     });
 
-    return foundProduct;
+    return foundProductDetails;
 }
 
 // Loads all products where the brand, name, or type of the pedal contains the searchTerm that was provided

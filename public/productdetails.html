@@ -47,26 +47,49 @@
                 const urlParams = new URLSearchParams(window.location.search);
                 productId = urlParams.get('productId');
 
-                var productDetail = loadProductByIdFromApi(productId);
+                var product = loadProductByIdFromApi(productId);
 
-                if (productDetail == null || productDetail == undefined) {
+                if (product == null || product == undefined) {
                     $("#invalidProduct").show();
                     $("#productDetails").hide();
                 }
                 else {
-                    productNameString = productDetail.brand + " - " + productDetail.name;
+                    productNameString = product.details.brand + " - " + product.details.name;
                     $("#productName").text(productNameString);
 
-                    $("#productDescription").text(productDetail.description);
-                    $("#productPrice").text("Price: $" + productDetail.price);
+                    $("#productDescription").text(product.details.description);
+                    $("#productPrice").text("Price: $" + product.details.price);
 
-                    $("#productImage").attr("src", "resources/img/" + productDetail.image);
+                    $("#productImage").attr("src", "resources/img/" + product.details.image);
 
-                    $("#productDemo").attr("src", productDetail.video);
-                    $("#productDemo").attr("title", productDetail.name);
+                    $("#productDemo").attr("src", product.details.video);
+                    $("#productDemo").attr("title", product.details.name);
 
-                    $("#invalidProduct").hide();
-                    $("#productDetails").show();
+                    // Show the related products, if applicable
+                    if (product.relatedProducts.firstRelatedProduct != null || product.relatedProducts.secondRelatedProduct != null) {
+                        $("#relatedProducts").show();
+
+                        buildRelatedProductDiv("firstRelated", product.relatedProducts.firstRelatedProduct);
+                        buildRelatedProductDiv("secondRelated", product.relatedProducts.secondRelatedProduct);
+                    }
+                    else {
+                        $("#relatedProducts").hide();
+                    }
+                }
+            }
+
+            function buildRelatedProductDiv(divId, relatedProduct) {
+                var mainDivId = "#" + divId;
+
+                if (relatedProduct == null) {
+                    $(mainDivId).hide();
+                }
+                else {
+                    var productNameString = relatedProduct.brand + " - " + relatedProduct.name + " (" + relatedProduct.type + ")";
+                    $(mainDivId).show();
+                    $(mainDivId + " > a:first").attr("href", "productdetails.html?productId=" + relatedProduct.productId);
+                    $(mainDivId + " > a:first > img:first").attr("src", "resources/img/" + relatedProduct.image);
+                    $(mainDivId + " > p:first").text(productNameString);
                 }
             }
 
@@ -107,6 +130,21 @@
                 <div class="shopping">
                     <button onclick="return addToCart();" >Add to Cart</button>
                     <button onclick="return backToProductsPage();">Back To Products</button>
+                </div>
+                <div id="relatedProducts">
+                    <h3>People who bought this product also purchased:</h3>
+                    <div id="firstRelated">
+                        <p></p>
+                        <a>
+                            <img class="productImage" width="85" height="85" />
+                        </a>
+                    </div>
+                    <div id="secondRelated">
+                        <p></p>
+                        <a>
+                            <img class="productImage" width="85" height="85" />
+                        </a>
+                    </div>
                 </div>
             </div>
             <div id="invalidProduct" style="display:none;">

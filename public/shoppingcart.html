@@ -76,14 +76,14 @@
                     $("#purchaseButton").show();
 
                     products.forEach(product => {
-                        var productNameString = product.brand + " - " + product.name;
-                        var productPriceString = "$" + product.price;
+                        var productNameString = product.details.brand + " - " + product.details.name;
+                        var productPriceString = "$" + product.details.price;
 
                         var productTableRow = templateString
-                            .replace("{{image}}", product.image)
+                            .replace("{{image}}", product.details.image)
                             .replace("{{productName}}", productNameString)
                             .replace("{{productPrice}}", productPriceString)
-                            .replace("{{productId}}", product.productId);
+                            .replace("{{productId}}", product.details.productId);
 
                         $("#shoppingCartDetails").append(productTableRow);
                     });

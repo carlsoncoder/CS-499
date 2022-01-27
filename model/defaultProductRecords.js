@@ -138,7 +138,7 @@ function getProductArray() {
             name: "Big Muff",
             type: "Fuzz",
             description: "The Electro-Harmonix Big Muff Pi is the pedal that started it all. The Big Muff Pi is the distortion pedal countless musicians, including Hendrix and Santana, relied on for its rich, creamy, violin-like sustain. A timeless piece, the Electro-Harmonix Big Muff Pi has been defining the sound of rock guitar for the past 30 years.",
-            price: 90.80,
+            price: 90.84,
             image: "bigmuff.jpg",
             video: "https://www.youtube.com/embed/BwS5k7JdwCs"
         })
