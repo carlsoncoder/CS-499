@@ -90,7 +90,8 @@ function deploy_cosmosdb_database() {
     az cosmosdb mongodb database create \
         --account-name "$COSMOSDB_ACCOUNT_NAME" \
         --name "$COSMOSDB_DATABASE_NAME" \
-        --resource-group "$MAIN_RESOURCE_GROUP_NAME"
+        --resource-group "$MAIN_RESOURCE_GROUP_NAME" \
+        --throughput 1200
 }
 
 function load_cosmosdb_credentials() {
